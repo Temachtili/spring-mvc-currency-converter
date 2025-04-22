@@ -34,3 +34,9 @@ It allows users to convert between currencies using real-time data from the Exch
 ```text
 100 USD → 1702.63 MXN          [2025-04-21 20:32:11]
 50 EUR  → 54.87 USD            [2025-04-21 20:34:22]
+```
+
+## 🙋‍♂️ About Me
+**Angel Gael Aviles Gama**  
+[LinkedIn](https://www.linkedin.com/in/angelavilesgama)  
+[GitHub](https://github.com/temachtili)

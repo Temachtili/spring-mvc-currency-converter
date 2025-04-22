@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
@@ -26,15 +26,19 @@ public class CurrencyService {
 
     private String loadApiKey() {
         Properties props = new Properties();
-
-        try(FileInputStream input = new FileInputStream("config.properties")){
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+            if (input == null) {
+                logger.error("❌ config.properties not found in classpath.");
+                return null;
+            }
             props.load(input);
             return props.getProperty("api.key");
-        }catch(IOException e){
-            logger.error("ERROR: Could not load API key from config.properties");
+        } catch (IOException e) {
+            logger.error("ERROR: Could not load API key from config.properties", e);
             return null;
         }
     }
+
 
     public Double convert(double amount, String from, String to) {
         if(Objects.isNull(apiKey)){
